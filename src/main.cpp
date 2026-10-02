@@ -23,8 +23,8 @@ const int pulsesPerRevolution = 4;
 
 // Photoresistor values
 int lightReading = 0;
-int lightThreshold = 2500;
-int lightHysteresis = 250;
+int lightThreshold = 2000;
+int lightHysteresis = 300;
 bool gapDetected = false;
 
 unsigned long lastPulseTime = 0;
@@ -39,8 +39,8 @@ double motorRPM = 0.0;
 double motorPWM = 0.0;
 
 // Starting PID values
-double Kp = 0.8;
-double Ki = 0.15;
+double Kp = 0.7;
+double Ki = 0.30;
 double Kd = 0.0;
 
 PID motorPID(
@@ -97,7 +97,7 @@ void setup() {
 
   // PID setup
   motorPID.SetOutputLimits(0, 255);
-  motorPID.SetSampleTime(250);
+  motorPID.SetSampleTime(200);
   motorPID.SetMode(MANUAL);
 
   displayScreen();
@@ -204,8 +204,8 @@ void checkButtons() {
     previousButtonTime = currentTime;
     targetRPM += 10;
 
-    if (targetRPM > 150) {
-      targetRPM = 150;
+    if (targetRPM > 140) {
+      targetRPM = 140;
     }
   }
 
